@@ -19,7 +19,11 @@ func NewServer(opts ...func(*Server)) *Server {
 		TLS:  false,
 	}
 
+	// opt это одна функция
+	// мы берем func (s *Server) { s.Host = "google"}
+	// и уже работаем с этой одной функцией
 	for _, opt := range opts {
+		// func
 		opt(s)
 	}
 
