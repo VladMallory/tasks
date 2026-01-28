@@ -23,4 +23,9 @@ func main() {
 			}
 		}
 	}()
+
+	// Остановка
+	time.Sleep(1500 * time.Millisecond)
+	ch <- true
+	fmt.Println("Stopped")
 }
