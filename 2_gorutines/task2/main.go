@@ -5,19 +5,18 @@ import (
 	"sync"
 )
 
+func greet(name string) {
+	fmt.Println("Hello,", name)
+}
+
 func main() {
 	var wg sync.WaitGroup
-
-	fmt.Println("Main started")
-
 	wg.Add(1)
 
 	go func() {
 		defer wg.Done()
-		fmt.Println("Goroutine finished")
+		greet("Da")
 	}()
 
 	wg.Wait()
-
-	fmt.Println("Main finished")
 }

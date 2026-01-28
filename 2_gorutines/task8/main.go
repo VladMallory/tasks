@@ -3,21 +3,22 @@ package main
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
 func main() {
 	var wg sync.WaitGroup
 
-	fmt.Println("Main started")
-
 	wg.Add(1)
 
 	go func() {
 		defer wg.Done()
-		fmt.Println("Goroutine finished")
+
+		for i := range 5 {
+			time.Sleep(200 * time.Millisecond)
+			fmt.Println(i)
+		}
 	}()
 
 	wg.Wait()
-
-	fmt.Println("Main finished")
 }
