@@ -14,11 +14,20 @@ func main() {
 		// Так не будет утечки
 		defer ticker.Stop()
 
+		// Тут главная суть в for
+		// Если бы его не было, select выполнил бы один раз case
+		// и код пошел бы дальше.
+		// А так он снова и снова сюда возрвщается пока
+		// не будет выполнен return
 		for {
+			// Входит в select один раз
 			select {
+			// Тут не понимаю зачем обращаться к каналу
+			// который содержит time
 			case <-ticker.C:
 				fmt.Println("Tick")
 			case <-ch:
+				// Выходит из for
 				return
 			}
 		}
@@ -27,5 +36,6 @@ func main() {
 	// Остановка
 	time.Sleep(1500 * time.Millisecond)
 	ch <- true
+
 	fmt.Println("Stopped")
 }
