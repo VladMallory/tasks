@@ -4,7 +4,7 @@ import "fmt"
 
 type Animal struct{}
 
-func (a Animal) Speak() { fmt.Printf("Звук!") }
+//func (a Animal) Speak() { fmt.Printf("Звук!") }
 
 type Dog struct {
 	Animal
@@ -21,6 +21,7 @@ func (c Cat) Speak() { fmt.Println("Moow!") }
 func main() {
 	Dog := Dog{}
 	Dog.Speak()
+
 	Cat := Cat{}
 	Cat.Speak()
 }
