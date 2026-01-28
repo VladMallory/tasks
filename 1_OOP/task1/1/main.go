@@ -7,7 +7,7 @@ type Person struct {
 	Age  int
 }
 
-// Greet выводит имя пользователя из структуры
+// Greet выводит имя пользователя из структуры.
 func (p *Person) Greet() {
 	fmt.Printf("Hello, I'm %s\n", p.Name)
 }
