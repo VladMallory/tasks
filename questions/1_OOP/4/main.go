@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type T struct {
 	name string
 }
@@ -9,10 +7,7 @@ type T struct {
 func (t T) Da() {}
 
 func main() {
-	var p T = T{"daa1"}
-
-	p.name = "["
-	fmt.Println(p.name)
+	var p *T = &T{"da123"}
 
 	// Это синтактический сахар
 	// Тут на самом деле происходит (*p).Da()
@@ -23,5 +18,5 @@ func main() {
 	// Разыменовываем p, и обращаемся к методу Da()
 	// Мы это делаем чтобы получить не адрес, а значение типа T
 	// и вызываем метод Da у значения T
-	//(*p).Da()
+	(*p).Da()
 }
