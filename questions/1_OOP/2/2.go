@@ -17,5 +17,5 @@ func main() {
 
 	// p := getPerson()
 	// p.SetName("Alice")
-	// fmt.Println(p.Name)
+	// fmt.Println(p.name)
 }

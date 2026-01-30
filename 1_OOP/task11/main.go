@@ -19,7 +19,7 @@ func main() {
 	//	"aaa",
 	//	20,
 	//}
-	//personClient := NewPerson(p1.Name, p1.Age)
+	//personClient := NewPerson(p1.name, p1.Age)
 	personClient := NewPerson("asd", 12)
 	fmt.Println(personClient)
 }
