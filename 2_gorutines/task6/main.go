@@ -12,7 +12,13 @@ func main() {
 	}()
 
 	// Читаю из канала
-	<-done
+	// Структуры можно читать сколько угодно
+	fmt.Println(<-done)
+	fmt.Println(<-done)
+	fmt.Println(<-done)
+	fmt.Println(<-done)
+	fmt.Println(<-done)
+	fmt.Println(<-done)
 
 	fmt.Println("Конец")
 }
