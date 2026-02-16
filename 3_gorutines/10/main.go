@@ -28,21 +28,22 @@ func printOnce(msg string) {
 	fmt.Fprintln(os.Stdout, msg)
 }
 
+func worker(wg *sync.WaitGroup, da *OnceFlag) {
+	defer wg.Done()
+
+	da.Do(func() {
+		printOnce("1")
+	})
+}
+
 func main() {
 	start := time.Now()
 	wg := sync.WaitGroup{}
 	var da OnceFlag
 
-	wg.Add(5)
-
 	for range 5 {
-		go func() {
-			defer wg.Done()
-
-			da.Do(func() {
-				printOnce("1")
-			})
-		}()
+		wg.Add(1)
+		go worker(&wg, &da)
 	}
 
 	wg.Wait()
