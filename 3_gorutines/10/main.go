@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"sync"
 	"time"
 )
@@ -23,6 +24,10 @@ func (o *OnceFlag) Do(f func()) {
 	f()
 }
 
+func printOnce(msg string) {
+	fmt.Fprintln(os.Stdout, msg)
+}
+
 func main() {
 	start := time.Now()
 	wg := sync.WaitGroup{}
@@ -30,16 +35,16 @@ func main() {
 
 	wg.Add(5)
 
-	for i := 0; i < 5; i++ {
+	for range 5 {
 		go func() {
 			defer wg.Done()
 
 			da.Do(func() {
-				fmt.Println("1")
+				printOnce("1")
 			})
 		}()
 	}
 
 	wg.Wait()
-	fmt.Println(time.Since(start))
+	printOnce(time.Since(start).String())
 }
