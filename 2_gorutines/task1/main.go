@@ -10,12 +10,9 @@ func main() {
 
 	fmt.Println("Main started")
 
-	wg.Add(1)
-
-	go func() {
-		defer wg.Done()
+	wg.Go(func() {
 		fmt.Println("Goroutine finished")
-	}()
+	})
 
 	wg.Wait()
 

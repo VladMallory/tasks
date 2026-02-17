@@ -13,11 +13,9 @@ func main() {
 
 	var wg sync.WaitGroup
 
-	for i := 0; i < 100; i++ {
-		wg.Add(1)
+	for range 100 {
 
-		go func() {
-			defer wg.Done()
+		wg.Go(func() {
 
 			// Когда идет запись нескольких го рутин на одну
 			// переменную, это может вызвать ситуация когда
@@ -26,7 +24,7 @@ func main() {
 			mu.Lock()
 			counter++
 			mu.Unlock()
-		}()
+		})
 	}
 
 	wg.Wait()

@@ -54,13 +54,11 @@ func RW() {
 
 	da := &SafeCounter{}
 
-	for i := 0; i < 500; i++ {
-		wg.Add(1)
+	for range 500 {
 
-		go func() {
-			defer wg.Done()
+		wg.Go(func() {
 			da.Inc()
-		}()
+		})
 	}
 
 	wg.Wait()
@@ -77,12 +75,10 @@ func mutex() {
 	wg := sync.WaitGroup{}
 
 	for range 50 {
-		wg.Add(1)
 
-		go func() {
-			defer wg.Done()
+		wg.Go(func() {
 			da.Inc()
-		}()
+		})
 	}
 
 	wg.Wait()

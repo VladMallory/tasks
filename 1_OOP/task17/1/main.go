@@ -2,8 +2,8 @@ package main
 
 import "fmt"
 
-func ConvertIntsToInterface(ints []int) []interface{} {
-	result := make([]interface{}, len(ints))
+func ConvertIntsToInterface(ints []int) []any {
+	result := make([]any, len(ints))
 
 	// складывает в result все что получил из ints
 	for i, v := range ints {

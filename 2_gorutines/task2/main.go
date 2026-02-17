@@ -11,12 +11,10 @@ func greet(name string) {
 
 func main() {
 	var wg sync.WaitGroup
-	wg.Add(1)
 
-	go func() {
-		defer wg.Done()
+	wg.Go(func() {
 		greet("Da")
-	}()
+	})
 
 	wg.Wait()
 }

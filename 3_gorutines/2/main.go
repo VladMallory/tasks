@@ -33,13 +33,11 @@ func main() {
 
 	da := &SafeCounter{}
 
-	for i := 0; i < 50; i++ {
-		wg.Add(1)
+	for range 50 {
 
-		go func() {
-			defer wg.Done()
+		wg.Go(func() {
 			da.Inc()
-		}()
+		})
 	}
 
 	wg.Wait()

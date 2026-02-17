@@ -41,7 +41,7 @@ func (u User) Name() string {
 func main() {
 	name := "aaa"
 	num := 12345
-	slice := []interface{}{name, num}
+	slice := []any{name, num}
 
 	Describe(slice)
 }

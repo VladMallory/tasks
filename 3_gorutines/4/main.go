@@ -53,7 +53,7 @@ func v1() {
 	da := &SafeMap{data: make(map[string]int)}
 
 	// Читают
-	for i := 0; i < 500; i++ {
+	for i := range 500 {
 		wg.Add(1)
 		go func(id int) {
 			defer wg.Done()
@@ -66,7 +66,7 @@ func v1() {
 	}
 
 	// Пишут
-	for i := 0; i < 500; i++ {
+	for i := range 500 {
 		wg.Add(1)
 		go func(id int) {
 			defer wg.Done()
@@ -106,7 +106,7 @@ func v2() {
 	<-ready
 
 	// Читатели
-	for i := 0; i < 500; i++ {
+	for i := range 500 {
 		wg.Add(1)
 		go func(id int) {
 			defer wg.Done()
@@ -128,18 +128,16 @@ func v3() {
 	wg2 := sync.WaitGroup{}
 	da := &SafeMap{data: make(map[string]int)}
 
-	for i := 0; i < 500; i++ {
-		wg2.Add(1)
+	for range 500 {
 
-		go func() {
-			defer wg2.Done()
+		wg2.Go(func() {
 			da.Set("da", 123)
-		}()
+		})
 	}
 	wg2.Wait()
 
 	// Читатели
-	for i := 0; i < 500; i++ {
+	for i := range 500 {
 		wg.Add(1)
 		go func(id int) {
 			defer wg.Done()

@@ -25,7 +25,7 @@ func main() {
 	da := &SafeLogger{out: os.Stdout}
 	wg := sync.WaitGroup{}
 
-	for i := 0; i < 500000; i++ {
+	for i := range 500000 {
 		wg.Add(1)
 		go func(id int) {
 			defer wg.Done()

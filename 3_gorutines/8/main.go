@@ -36,20 +36,18 @@ func main() {
 	wg := sync.WaitGroup{}
 	da := &Stats{}
 
-	for i := 0; i < 20; i++ {
-		wg.Add(1)
+	for range 20 {
 
-		go func() {
-			defer wg.Done()
+		wg.Go(func() {
 
-			for j := 0; j < 1000; j++ {
+			for range 1000 {
 				da.RecordRequest()
 
 				if r.Float64() < 0.1 {
 					da.RecordError()
 				}
 			}
-		}()
+		})
 	}
 
 	wg.Wait()
