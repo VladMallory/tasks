@@ -37,9 +37,7 @@ func main() {
 	da := &Stats{}
 
 	for range 20 {
-
 		wg.Go(func() {
-
 			for range 1000 {
 				da.RecordRequest()
 
